@@ -1,0 +1,29 @@
+{
+  "name": "@vraxia/cli",
+  "version": "0.1.0",
+  "description": "CLI entry points for VRAXIA Work",
+  "type": "module",
+  "bin": {
+    "vraxia": "./src/hunt.ts"
+  },
+  "scripts": {
+    "hunt": "tsx src/hunt.ts",
+    "recover": "tsx src/recover.ts",
+    "recover:dry": "tsx src/recover.ts --dry-run",
+    "diagnostico": "tsx src/diagnostico.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vraxia/core": "*",
+    "@vraxia/agents": "*",
+    "@vraxia/rag": "*",
+    "@vraxia/plugins": "*",
+    "@vraxia/notifications": "*",
+    "@anthropic-ai/sdk": "^0.27.0"
+  },
+  "devDependencies": {
+    "tsx": "*",
+    "typescript": "*"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@vraxia/rag",
+  "version": "0.1.0",
+  "description": "5-layer questionnaire resolver — QA cache, TF-IDF RAG, Haiku, KB, fallback",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@vraxia/core": "*"
+  },
+  "devDependencies": {
+    "typescript": "*"
+  },
+  "license": "MIT"
+}

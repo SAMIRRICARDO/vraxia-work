@@ -1,0 +1,43 @@
+# Environment — NEVER commit credentials
+.env
+.env.local
+.env.*.local
+
+# Runtime data — contains PII (job applications, credentials)
+.vraxia-work/
+.linkedin-profile/
+*.db
+*.db-journal
+
+# Build artifacts
+dist/
+build/
+*.js.map
+
+# Node
+node_modules/
+.npm/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Playwright
+test-results/
+playwright-report/
