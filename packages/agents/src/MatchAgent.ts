@@ -27,7 +27,7 @@ ip = interview probability (how likely this candidate gets an interview for this
     const result = await this.complete(prompt);
 
     if (!result.success || !result.data) {
-      return { success: false, error: result.error, durationMs: Date.now() - start };
+      return { success: false, ...(result.error !== undefined && { error: result.error }), durationMs: Date.now() - start };
     }
 
     try {
@@ -41,7 +41,7 @@ ip = interview probability (how likely this candidate gets an interview for this
           gaps: raw.gaps,
           recommendation: raw.rec as MatchScore['recommendation'],
         },
-        tokenUsage: result.tokenUsage,
+        ...(result.tokenUsage !== undefined && { tokenUsage: result.tokenUsage }),
         durationMs: Date.now() - start,
       };
     } catch {

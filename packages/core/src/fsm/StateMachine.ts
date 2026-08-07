@@ -53,9 +53,9 @@ export class ApplicationStateMachine {
     const transition: StateTransition = {
       from: this.ctx.currentState,
       to,
-      reason,
       timestamp: new Date().toISOString(),
-      metadata,
+      ...(reason !== undefined && { reason }),
+      ...(metadata !== undefined && { metadata }),
     };
 
     this.ctx.history.push(transition);

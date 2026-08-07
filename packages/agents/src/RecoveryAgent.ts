@@ -58,12 +58,12 @@ Error category: ${classified.category}`;
     const result = await this.complete(prompt);
 
     if (!result.success || !result.data) {
-      return { success: false, error: result.error, durationMs: Date.now() - start };
+      return { success: false, ...(result.error !== undefined && { error: result.error }), durationMs: Date.now() - start };
     }
 
     try {
       const raw = JSON.parse(result.data) as { recoverable: boolean; strategy: string };
-      return { success: true, data: raw, tokenUsage: result.tokenUsage, durationMs: Date.now() - start };
+      return { success: true, data: raw, ...(result.tokenUsage !== undefined && { tokenUsage: result.tokenUsage }), durationMs: Date.now() - start };
     } catch {
       return { success: true, data: { recoverable: true, strategy: 'retry' }, durationMs: Date.now() - start };
     }

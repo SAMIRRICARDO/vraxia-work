@@ -36,21 +36,22 @@ that was successfully submitted, extract a normalized version for caching. Outpu
     const result = await this.complete(prompt);
 
     if (!result.success || !result.data) {
-      return { success: false, error: result.error, durationMs: Date.now() - start };
+      return { success: false, ...(result.error !== undefined && { error: result.error }), durationMs: Date.now() - start };
     }
 
     try {
       const raw = JSON.parse(result.data) as { normalizedQuestion: string; answer: string };
+      const pair: QAPair = {
+        question: raw.normalizedQuestion,
+        answer: raw.answer,
+        learnedAt: new Date().toISOString(),
+        ...(context?.platform !== undefined && { platform: context.platform }),
+        ...(context?.company !== undefined && { company: context.company }),
+      };
       return {
         success: true,
-        data: {
-          question: raw.normalizedQuestion,
-          answer: raw.answer,
-          platform: context?.platform,
-          company: context?.company,
-          learnedAt: new Date().toISOString(),
-        },
-        tokenUsage: result.tokenUsage,
+        data: pair,
+        ...(result.tokenUsage !== undefined && { tokenUsage: result.tokenUsage }),
         durationMs: Date.now() - start,
       };
     } catch {
